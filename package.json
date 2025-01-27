@@ -1,0 +1,17 @@
+{
+  "name": "rickandmorty",
+  "version": "0.0.1",
+  "description": "nuxt + vite test project with rick and morty api",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "Vitaliy D.",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.0.11"
+  }
+}
