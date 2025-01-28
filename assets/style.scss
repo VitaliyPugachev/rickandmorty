@@ -1,0 +1,14 @@
+body {
+    color: #131313;
+    font-size: 16px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #131313;
+
+    &:hover {
+        color: rgba($color: #131313, $alpha: 0.7);
+    }
+}
