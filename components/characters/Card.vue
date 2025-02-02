@@ -6,7 +6,7 @@ defineProps<{character: CharacterModel}>();
 </script>
 
 <template>
-  <article class="character-card">
+  <article class="character-card" @click="$router.push(`/characters/${character.id}`)">
 
     <section class="character-card__image-wrapper">
         <img class="character-card__image" :src="character.image" :alt="character.name"/>
@@ -70,6 +70,7 @@ defineProps<{character: CharacterModel}>();
     flex-direction: column;
     align-items: center;
     width: 250px;
+    cursor: pointer;
 
     &__info {
         align-self: flex-start;
@@ -101,6 +102,11 @@ defineProps<{character: CharacterModel}>();
         display: flex;
         align-items: center;
         gap: 8px;
+    }
+
+    &:hover {
+        transform: scale(1.03);
+        transition: all 0.3s ease;
     }
 }
 

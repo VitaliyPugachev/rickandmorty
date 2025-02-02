@@ -49,6 +49,7 @@ const menu: MenuLink[] = [
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 100;
 
     &__list {
         list-style: none;
