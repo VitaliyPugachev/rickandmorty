@@ -1,5 +1,9 @@
 <script lang="ts">
-  
+
+useHead({
+  title: 'Rick and Morty'
+})
+
 </script>
 
 <template>

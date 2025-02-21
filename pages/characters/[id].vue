@@ -7,26 +7,26 @@ const loading = ref(false);
 const data = ref<any>();
 
 const getCharacterById = async (id: string) => {
-    try {
-        loading.value = true;
-        const response = await useFetch<CharacterModel>(`https://rickandmortyapi.com/api/character/${id}`);
+  try {
+    loading.value = true;
+    const response = await useFetch<CharacterModel>(`https://rickandmortyapi.com/api/character/${id}`);
 
-        const {data} = response;
+    const {data} = response;
         
-        if (data.value) {
-            character.value = response.data.value;
-        }
-    } catch(e) {
-        console.error(e);
-    } finally {
-        loading.value = false;
+    if (data.value) {
+      character.value = response.data.value;
     }
+  } catch(e) {
+    console.error(e);
+  } finally {
+    loading.value = false;
+  }
 }
 
 await getCharacterById(route.params?.id.toString());
 
 useHead({
-    title: character.value?.name || 'Character'
+  title: character.value?.name || 'Character'
 })
 
 
@@ -39,7 +39,7 @@ useHead({
     </button>
     <section class="character__info">
         <div class="character__image-wrapper">
-            <img :src="character?.image"/>
+            <img :src="character?.image">
         </div>
         <div class="character__description">
             <div class="character__row">

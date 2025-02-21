@@ -1,25 +1,7 @@
-<template>
-  <section class="characters">
-    <h2 class="characters__title">List of characters</h2>
-    <div class="characters__list">
-      <template v-for="character in charactersList" :key="character.id">
-        <CharactersCard :character/>
-      </template>
-    </div>
-    <ListPagination 
-      :current-page="page" 
-      :pages="pagination?.pages || 0"
-      @on-request="getCharacterList"
-    />
-  </section>
-</template>
-
 <script lang="ts" setup>
 import ListPagination from '~/components/ListPagination.vue';
 import type { CharacterModel } from '~/models/CharacterModel';
 import type { InfoModel, ResponseListModel } from '~/models/ResponseModel';
-
-const elementsPerPage = 8;
 
 const charactersList = ref<CharacterModel[]>([]);
 const listLoading = ref(false);
@@ -48,9 +30,28 @@ const getCharacterList = async (page?: number) => {
   }
 }
 
-await getCharacterList(1);
+getCharacterList(1);
 
 </script>
+
+<template>
+  <section class="characters">
+    <h2 class="characters__title">List of characters</h2>
+    <div v-if="listLoading" class="loader">
+      LOADING
+    </div>
+    <div v-else class="characters__list">
+      <template v-for="character in charactersList" :key="character.id">
+        <CharactersCard :character/>
+      </template>
+    </div>
+    <ListPagination
+      :current-page="page"
+      :pages="pagination?.pages || 0"
+      @on-request="getCharacterList"
+    />
+  </section>
+</template>
 
 <style lang="scss">
 .characters {

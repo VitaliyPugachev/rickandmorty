@@ -9,7 +9,7 @@ defineProps<{character: CharacterModel}>();
   <article class="character-card" @click="$router.push(`/characters/${character.id}`)">
 
     <section class="character-card__image-wrapper">
-        <img class="character-card__image" :src="character.image" :alt="character.name"/>
+        <img class="character-card__image" :src="character.image" :alt="character.name">
     </section>
 
     <header class="character-card__header">
