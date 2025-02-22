@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import type { CharacterModel } from '~/models/CharacterModel';
+import { useToast } from '#imports';
 
 const route = useRoute();
 const character = ref<CharacterModel | null>(null);
 const loading = ref(false);
-const data = ref<any>();
+
+const toast = useToast();
 
 const getCharacterById = async (id: string) => {
   try {
@@ -12,7 +14,7 @@ const getCharacterById = async (id: string) => {
     const response = await useFetch<CharacterModel>(`https://rickandmortyapi.com/api/character/${id}`);
 
     const {data} = response;
-        
+
     if (data.value) {
       character.value = response.data.value;
     }
@@ -21,59 +23,95 @@ const getCharacterById = async (id: string) => {
   } finally {
     loading.value = false;
   }
+};
+
+const copyLink = () => {
+  try {
+    navigator.clipboard.writeText(`${window.location.href}`);
+    toast.add({
+      title: 'Notification',
+      description: 'link copied successful!',
+      
+    })
+  } catch(e) {
+    toast.add({
+      title: 'Notification',
+      description: 'Copy error',
+      
+    })
+  }
 }
 
 await getCharacterById(route.params?.id.toString());
 
+const breadcrumbs = [{
+  label: 'Home',
+  icon: 'i-heroicons-home',
+  to: '/'
+}, {
+  label: 'Characters',
+  icon: 'i-hugeicons:user-multiple-02',
+  to: '/characters'
+}, {
+  label: character.value?.name || 'personal',
+  icon: 'i-heroicons-link'
+}]
+
 useHead({
   title: character.value?.name || 'Character'
 })
-
-
 </script>
 
 <template>
   <main class="character">
-    <button class="character__back-button" @click="$router.go(-1)">
-        Вернуться назад
-    </button>
-    <section class="character__info">
-        <div class="character__image-wrapper">
-            <img :src="character?.image">
-        </div>
-        <div class="character__description">
-            <div class="character__row">
-                <span class="character__label">
-                    Name
-                </span>
-                <span class="character__value">
-                    {{ character?.name }}
-                </span>
-            </div>
+    <UBreadcrumb :links="breadcrumbs"/>
+    <div class="character__buttons">
+      <UButton icon="i-hugeicons:arrow-turn-backward" label="Back to characters" @click="$router.push('/characters')"/>
+      <UButton icon="i-hugeicons:copy-01" label="Copy link" @click="copyLink"/>
+    </div>
+    <UCard>
+      <template #header>
+        {{ character?.name }}
+      </template>
+  
+      <img :src="character?.image">
+  
+      <template #footer>
+        <UBadge v-if="character?.gender">
+          {{ character?.gender }}
+        </UBadge>
 
-            <div class="character__row">
-                <span class="character__label">
-                    Gender
-                </span>
-                <span class="character__value">
-                    {{ character?.gender }}
-                </span>
-            </div>
+        <UBadge v-if="character?.species">
+          {{ character?.species }}
+        </UBadge>
 
-            <div class="character__row">
-                <span class="character__label">
-                    Type
-                </span>
-                <span class="character__value">
-                    {{ character?.type }}
-                </span>
-            </div>
-        </div>
-    </section>
-    {{ character }}
+        <UBadge v-if="character?.origin.name">
+          {{ character?.origin.name }}
+        </UBadge>
+
+        <UBadge v-if="character?.type">
+          {{ character?.type }}
+        </UBadge>
+
+        <UBadge v-if="character?.status">
+          {{ character?.status }}
+        </UBadge>
+      </template>
+    </UCard>
   </main>
 </template>
 
-<style>
+<style lang="scss" scoped>
+.character {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
 
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
 </style>

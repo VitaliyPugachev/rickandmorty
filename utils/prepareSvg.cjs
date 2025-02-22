@@ -29,7 +29,6 @@ const updateSvgFiles = (dir) => {
   });
 }
 
-
 function processSvgFiles(dir) {
   fs.readdir(dir, (err, files) => {
     if (err) {
@@ -48,6 +47,8 @@ function processSvgFiles(dir) {
       }
     });
   });
+
+  console.log('Файлы преобразованы');
 }
 
 processSvgFiles(iconsDir);
