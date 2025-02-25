@@ -1,11 +1,7 @@
-<script lang="ts">
-import { UNotification } from '#components';
-
-
+<script>
 useHead({
   title: 'Rick and Morty'
 })
-
 </script>
 
 <template>
@@ -13,8 +9,7 @@ useHead({
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
-
-    <UNotification/>
+    <NotificationComponent/>
   </div>
 </template>
 

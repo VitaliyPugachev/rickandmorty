@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/eslint',
     '@nuxt/ui',
+    '@pinia/nuxt'
   ],
   vite: {
     plugins: [

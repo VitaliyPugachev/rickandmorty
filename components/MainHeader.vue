@@ -42,7 +42,7 @@ const menu: MenuLink[] = [
       <template v-for="item in menu" :key="item.to">
         <li class="header__list-item">
           <NuxtLink class="header__link" :to="item.to">
-            <Component class="header__icon" :is="item.icon"/>
+            <Component :is="item.icon" class="header__icon"/>
             {{item.label}}
           </NuxtLink>
         </li>
@@ -73,6 +73,11 @@ const menu: MenuLink[] = [
 
   &__list-item {
     outline: none;
+    font-size: 16px;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
   &__link {
@@ -89,6 +94,11 @@ const menu: MenuLink[] = [
     width: 20px;
     height: 20px;
     fill: #131313;
+
+    @media (max-width: 768px) {
+      width: 14px;
+      height: 14px;
+    }
   }
 }
 </style>

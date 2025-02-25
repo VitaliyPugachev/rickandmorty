@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import type { CharacterModel } from '~/models/CharacterModel';
-import { useToast } from '#imports';
 
 const route = useRoute();
 const character = ref<CharacterModel | null>(null);
 const loading = ref(false);
 
-const toast = useToast();
+const {showNotificaton} = useNotification();
 
 const getCharacterById = async (id: string) => {
   try {
@@ -28,17 +27,9 @@ const getCharacterById = async (id: string) => {
 const copyLink = () => {
   try {
     navigator.clipboard.writeText(`${window.location.href}`);
-    toast.add({
-      title: 'Notification',
-      description: 'link copied successful!',
-      
-    })
+    showNotificaton('Ссылка скопирована');
   } catch(e) {
-    toast.add({
-      title: 'Notification',
-      description: 'Copy error',
-      
-    })
+    showNotificaton('Не удалось скопировать ссылку')
   }
 }
 
