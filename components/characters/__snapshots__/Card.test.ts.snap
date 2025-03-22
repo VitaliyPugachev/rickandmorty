@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card 'Rick Sanchez' 1`] = `
+"<ucard class="character-card">
+  <header class="character-card__header">
+    <ubadge color="blue" label="Rick Sanchez"></ubadge>
+  </header>
+  <section class="character-card__info">
+    <div class="character-card__info-row"><span class="character-card__label"> Gender: </span><span class="character-card__value">Male</span></div>
+    <div class="character-card__info-row"><span class="character-card__label"> Type: </span><span class="character-card__value"></span></div>
+    <div class="character-card__info-row"><span class="character-card__label"> Location: </span><span class="character-card__value">Citadel of Ricks</span></div>
+    <div class="character-card__info-row"><span class="character-card__label"> Status: </span><span class="character-card__value">Alive</span></div>
+  </section>
+</ucard>"
+`;
+
+exports[`Card 'Summer Smith' 1`] = `
+"<ucard class="character-card">
+  <header class="character-card__header">
+    <ubadge color="blue" label="Summer Smith"></ubadge>
+  </header>
+  <section class="character-card__info">
+    <div class="character-card__info-row"><span class="character-card__label"> Gender: </span><span class="character-card__value">Female</span></div>
+    <div class="character-card__info-row"><span class="character-card__label"> Type: </span><span class="character-card__value">type_test</span></div>
+    <div class="character-card__info-row"><span class="character-card__label"> Location: </span><span class="character-card__value">Earth</span></div>
+    <div class="character-card__info-row"><span class="character-card__label"> Status: </span><span class="character-card__value">Dead</span></div>
+  </section>
+</ucard>"
+`;

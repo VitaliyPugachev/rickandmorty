@@ -6,14 +6,16 @@ defineProps<{character: CharacterModel}>();
 </script>
 
 <template>
-  <article class="character-card" @click="$router.push(`/characters/${character.id}`)">
+  <UCard class="character-card" @click="$router.push(`/characters/${character.id}`)">
 
-    <section class="character-card__image-wrapper">
-        <img class="character-card__image" :src="character.image" :alt="character.name">
-    </section>
+    <template #header>
+        <section class="character-card__image-wrapper">
+            <img class="character-card__image" :src="character.image" :alt="character.name">
+        </section>
+    </template>
 
     <header class="character-card__header">
-        <h4 class="character-card__name">{{character.name}}</h4>
+        <UBadge color="blue" :label="character.name"/>
     </header>
 
     <section class="character-card__info">
@@ -57,57 +59,16 @@ defineProps<{character: CharacterModel}>();
             </span>
         </div>
     </section>
-  </article>
+  </UCard>
 </template>
 
 <style lang="scss">
-
 .character-card {
-    border: 1px solid black;
-    padding: 12px;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 250px;
     cursor: pointer;
 
-    &__info {
-        align-self: flex-start;
-    }
-
-    &__image-wrapper {
-        width: 274px;
-        height: 274px;
-        overflow: hidden;
-        border-radius: 4px;
-        margin: -12px;
-    }
-
-    &__image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    &__info {
-        font-size: 14px;
-    }
-
-    &__label {
-        font-weight: 600;
-    }
-
-    &__info-row {
+    &__header {
         display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    &:hover {
-        transform: scale(1.03);
-        transition: all 0.3s ease;
+        justify-content: center;
     }
 }
-
 </style>

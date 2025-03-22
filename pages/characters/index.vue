@@ -32,6 +32,10 @@ const getCharacterList = async (page?: number) => {
 
 getCharacterList(1);
 
+useHead({
+  title: 'Characters'
+})
+
 </script>
 
 <template>
